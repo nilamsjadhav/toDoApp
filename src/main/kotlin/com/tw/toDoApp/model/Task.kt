@@ -11,4 +11,17 @@ class Task(val id: Int, var task : String, var isDone: Boolean){
   fun modify(taskDes : String) {
     this.task = taskDes
   }
+
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as Task
+
+    if (id != other.id) return false
+    if (task != other.task) return false
+    if (isDone != other.isDone) return false
+
+    return true
+  }
 }

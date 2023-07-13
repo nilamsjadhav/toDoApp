@@ -3,8 +3,7 @@ package com.tw.toDoApp.model
 import org.springframework.stereotype.Component
 
 @Component
-class TaskManager {
-  val taskList = mutableListOf<Task>()
+class TaskManager(val taskList: MutableList<Task> = mutableListOf() ) {
   var count = 1;
 
   fun add(task: String): Task {
@@ -18,12 +17,12 @@ class TaskManager {
   }
 
   fun findTask(id: Int): Task{
-    return taskList.filter { it.isTaskSame(id) }.first()
+    return taskList.first { it.isTaskSame(id) }
   }
 
   fun changeStatus(id: Int) {
     val recentTask = findTask(id)
-    return recentTask.markTask()
+    recentTask.markTask()
   }
 
   fun delete(id: Int) {

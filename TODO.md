@@ -21,7 +21,9 @@ Do :
 
   - [x] Create '/mark-as-done' endpoint for marking task as done. 
   - [x] Create '/mark-as-undone' endpoint for marking task as undone.
+  - [ ] Rethink about contract of changeStatus method.
   - [ ] Write test for add feature
+  - [ ] throw an error if task id is not valid
   
 - [x] Delete task
 
@@ -34,10 +36,10 @@ Do :
   - [ ] Write test for add feature
 
 - [ ] Solve bug : after hitting `http://localhost:3000/` url server should give black page not html text on page
-
+- [ ] Throw error when id is not present in list
 - [ ] Write a script to run backend and frontend together in a command.
 - [x] version control the app.
-- [ ] push repo to github
+- [x] push repo to github
 - [ ] Create controller in frontend in order to fetch data from backend
 - [ ] Create mockups for frontend
 - [ ] Think about storing data more effectively
