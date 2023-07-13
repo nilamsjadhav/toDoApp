@@ -5,7 +5,6 @@ import axios from "axios";
 const App = () => {
     const [data, setData] = useState('');
 
-    console.log('before axios', data)
     useEffect(() => {
         axios.get('/')
             .then((response) => {
@@ -17,10 +16,6 @@ const App = () => {
     }, []);
 
     return <div>{data}</div>;
-    // console.log(data)
-    // return <div>Hello world</div>;
 };
 
-
 ReactDOM.render(<App />, document.getElementById('root'));
-// ReactDOM.render(<h1>Hello world</h1>, document.getElementById('root'));

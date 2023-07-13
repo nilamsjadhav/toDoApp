@@ -1,38 +1,35 @@
 package com.tw.toDoApp.controller
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.tw.toDoApp.model.Task
 import com.tw.toDoApp.model.TaskManager
 import io.mockk.every
 import io.mockk.mockkClass
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 
 class ToDoControllerTest {
   private val taskManager = mockkClass(TaskManager::class)
   private val toDoController = ToDoController(taskManager)
+  private val objectMapper = ObjectMapper()
 
   private val mockMvc: MockMvc = MockMvcBuilders
     .standaloneSetup(toDoController)
     .build()
 
-  @BeforeEach
-  private fun setup() {
-
-  }
-
   @Test
-  fun greet() {
+  fun `should greet a user`() {
     mockMvc.perform(MockMvcRequestBuilders.get("/")).andExpectAll(
-      MockMvcResultMatchers.status().is2xxSuccessful)
+      status().is2xxSuccessful)
   }
 
   @Test
-  fun addTask() {
+  fun `should add a task`() {
     val taskDes = "Check mails"
     val task = Task(1, taskDes, false)
 
@@ -41,6 +38,20 @@ class ToDoControllerTest {
       MockMvcRequestBuilders.post("/add-task").content(taskDes).contentType(
         MediaType.APPLICATION_JSON
       )
-    ).andExpect(MockMvcResultMatchers.status().isOk)
+    ).andExpect(status().isOk)
   }
+
+  @Test
+  fun `should display all available tasks`(){
+    val task1 = Task(1, "Check mails", false)
+    val task2 = Task(2, "Read book", false)
+    val tasks = mutableListOf(task1, task2)
+
+    every { taskManager.display() }.returns(tasks)
+    mockMvc.perform(MockMvcRequestBuilders.get("/display-tasks"))
+      .andExpect(status().is2xxSuccessful)
+      .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+      .andExpect(content().string(objectMapper.writeValueAsString(tasks)))
+  }
+
 }
