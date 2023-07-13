@@ -35,6 +35,7 @@ Do :
   - [x] Create '/modify-task' endpoint for modifying task description
   - [ ] Write test for add feature
 
+- [ ] Add content in README.md
 - [ ] Solve bug : after hitting `http://localhost:3000/` url server should give black page not html text on page
 - [ ] Throw error when id is not present in list
 - [ ] Write a script to run backend and frontend together in a command.

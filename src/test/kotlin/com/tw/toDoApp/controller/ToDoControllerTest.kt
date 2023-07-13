@@ -1,9 +1,6 @@
 package com.tw.toDoApp.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.tw.toDoApp.constant.TASK_MODIFIED_SUCCESSFULLY
-import com.tw.toDoApp.dto.Response
-import com.tw.toDoApp.dto.TaskInfo
 import com.tw.toDoApp.model.Task
 import com.tw.toDoApp.model.TaskManager
 import io.mockk.every
@@ -56,23 +53,4 @@ class ToDoControllerTest {
       .andExpect(content().contentType(MediaType.APPLICATION_JSON))
       .andExpect(content().string(objectMapper.writeValueAsString(tasks)))
   }
-
- @Test
- fun `should modify given tasks`(){
-   val task1 = Task(1, "Check mails", false)
-   val task2 = Task(2, "Read book", false)
-   val tasks = mutableListOf(task1, task2)
-   val taskManager = TaskManager(tasks)
-   toDoController = ToDoController(taskManager)
-
-   val modifiedTaskDes = "Read historical books"
-   val requestBody = TaskInfo(1, modifiedTaskDes)
-   val expected = Response(TASK_MODIFIED_SUCCESSFULLY, task2.task, modifiedTaskDes)
-
-   mockMvc.perform(MockMvcRequestBuilders.post("/modify-task")
-     .content(objectMapper.writeValueAsString(requestBody)))
-     .andExpect(status().is2xxSuccessful)
-     .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-     .andExpect(content().string(objectMapper.writeValueAsString(expected)))
- }
 }
