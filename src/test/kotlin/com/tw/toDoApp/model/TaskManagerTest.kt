@@ -77,8 +77,6 @@ class TaskManagerTest {
 
     taskManager.delete(1)
     val actual = taskManager.display()
-    println(objectMapper.writeValueAsString(actual))
-    println(objectMapper.writeValueAsString(expected))
     assertTrue(expected == actual )
   }
 

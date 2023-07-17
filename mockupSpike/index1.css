@@ -1,0 +1,60 @@
+body {
+ margin : 2em;
+ width: 100%;
+ height: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.task-list{
+  width: 35%;
+  height: 800px;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5em;
+}
+
+.title{
+  height: 5%;
+  font-size: 1.7em;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.task-container{
+  margin: 0 1.8em;
+  display: flex;
+  flex-direction: column; 
+  row-gap: 1.5em; 
+}
+
+input{
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 1.3em;
+}
+
+.tasks{
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8em;
+}
+
+.task-item{
+  display: flex;
+  column-gap: 1em;
+}
+
+.task-des {
+  width: 90%;
+}

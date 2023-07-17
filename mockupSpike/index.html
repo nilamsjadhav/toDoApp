@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="index1.css">
+</head>
+
+<body>
+  <div class="task-list">
+    <div class="title">Tasks</div>
+    <div class="task-container">
+      <div class="add-task">
+        <input type="text" autocomplete="off" placeholder="Add New Task" v-model="tasks.name" @keyup.enter="newItem"
+          class="task-input">
+      </div>
+      <div class="tasks">
+        <div class="task-item">
+          <span>✅</span><span class="task-des">Swimming</span><span>🗑️</span>
+        </div>
+        <div class="task-item">
+          <span>✅</span><span class="task-des">Paying electricity bill</span><span>🗑️</span>
+        </div>
+        <div class="task-item">
+          <span>✅</span><span class="task-des">Reading historical books</span><span>🗑️</span>
+        </div>
+        <div class="task-item">
+          <span>✅</span><span class="task-des">Paying electricity bill Lorem ipsum dolor sit amet consectetur
+            adipisicing
+            elit. Ut assumenda unde nesciunt expedita temporibus eos iusto magni nobis distinctio itaque, in autem
+            doloribus. Mollitia minus dolorem ipsam nulla enim porro.</span><span>🗑️</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

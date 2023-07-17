@@ -5,6 +5,7 @@ import com.tw.toDoApp.model.Task
 import com.tw.toDoApp.model.TaskManager
 import io.mockk.every
 import io.mockk.mockkClass
+import io.mockk.verify
 import org.junit.jupiter.api.Test
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
@@ -39,6 +40,8 @@ class ToDoControllerTest {
         MediaType.APPLICATION_JSON
       )
     ).andExpect(status().isOk)
+
+    verify {taskManager.add(taskDes)}
   }
 
   @Test
@@ -52,5 +55,7 @@ class ToDoControllerTest {
       .andExpect(status().is2xxSuccessful)
       .andExpect(content().contentType(MediaType.APPLICATION_JSON))
       .andExpect(content().string(objectMapper.writeValueAsString(tasks)))
+
+    verify {taskManager.display()}
   }
 }
